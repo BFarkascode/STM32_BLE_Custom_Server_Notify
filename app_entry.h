@@ -32,7 +32,6 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "SPI.h"
 #include "driver_ssd1315_advance.h"
-#include "I2CDriver_STM32WB5MM.h"
 #include "stdio.h"
 /* USER CODE END Includes */
 
