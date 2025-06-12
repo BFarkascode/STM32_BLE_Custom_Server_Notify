@@ -64,7 +64,8 @@ With these in mind, let’s look at what the wiki on the “Heart Rate Sensor”
 - 3) app_ble.c – BLE GAP setup. Starts the BLE stack. 
 - 4) svc_ctrl.c - BLE GATT setup or service management. This source code is in “Middleware” and thus should not be modified. It initiates the selected services plus the BLE hardware. We won’t be touching this.
 - 5) hrs.c/dis.c (custom_stm.c) – event handler and characteristics update. Both hrs.c and dis.c are within official ST code written for the Heart Reat Sensor and are in “Middleware”.  Our version of this will be the “custom_stm.c” which will be in the WPAN App section.
--6) hrs_app.c/dis_app.c (custom_app.c) – service notification definition and context initialization. While the Heart Rate Sensor has two apps, we will have only one. We will be doing most of our coding on this layer.
+- 6) hrs_app.c/dis_app.c (custom_app.c) – service notification definition and context initialization. While the Heart Rate Sensor has two apps, we will have only one. We will be doing most of our coding on this layer.
+
 +1) app_conf.h – if we want to have a custom task defined, we will need to add its custom ID to this header, otherwise it won’t be registered by the sequencer. For the Heart Reat Sensor, this is already added to the file.
 
 With this quick overview, we now have a list of culprits to modify for our custom notification to work. But what are to modify?
