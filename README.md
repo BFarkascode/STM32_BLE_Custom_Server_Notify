@@ -59,11 +59,11 @@ I also very strongly recommend checking the “Heart Rate Sensor” or “BLE se
 Also, of note, the code is stored both on the WPAN or “app” level as well as within “Middleware” where – conveniently - there also exists a “WPAN” folder. We “should” only be interacting with the app part though.
 
 With these in mind, let’s look at what the wiki on the “Heart Rate Sensor” project (4.4.2 Application initialization) tells us that our code structure:
--1) main.c – initialize system
--2) app_entry.c – initialize transport layers and hardware. Configure the peripherals.
--3) app_ble.c – BLE GAP setup. Starts the BLE stack. 
--4) svc_ctrl.c - BLE GATT setup or service management. This source code is in “Middleware” and thus should not be modified. It initiates the selected services plus the BLE hardware. We won’t be touching this.
--5) hrs.c/dis.c (custom_stm.c) – event handler and characteristics update. Both hrs.c and dis.c are within official ST code written for the Heart Reat Sensor and are in “Middleware”.  Our version of this will be the “custom_stm.c” which will be in the WPAN App section.
+- 1) main.c – initialize system
+- 2) app_entry.c – initialize transport layers and hardware. Configure the peripherals.
+- 3) app_ble.c – BLE GAP setup. Starts the BLE stack. 
+- 4) svc_ctrl.c - BLE GATT setup or service management. This source code is in “Middleware” and thus should not be modified. It initiates the selected services plus the BLE hardware. We won’t be touching this.
+- 5) hrs.c/dis.c (custom_stm.c) – event handler and characteristics update. Both hrs.c and dis.c are within official ST code written for the Heart Reat Sensor and are in “Middleware”.  Our version of this will be the “custom_stm.c” which will be in the WPAN App section.
 -6) hrs_app.c/dis_app.c (custom_app.c) – service notification definition and context initialization. While the Heart Rate Sensor has two apps, we will have only one. We will be doing most of our coding on this layer.
 +1) app_conf.h – if we want to have a custom task defined, we will need to add its custom ID to this header, otherwise it won’t be registered by the sequencer. For the Heart Reat Sensor, this is already added to the file.
 
@@ -163,11 +163,11 @@ Of note:
 We will be building upon the previous project in the sequence:
 
 - STM32_BLE_Custom_Server_UART
-- 
+ 
 As well as heavily harken back to the RTOS project:
 
 - STM32_RTOS
-- 
+  
 In case it is not known, both the BLE_Sensor and Heart Rate examples are available within the firmware package for the WB5MM, similarly where screen drivers are stored.
 
 ## To read
@@ -176,9 +176,11 @@ Must reads are general custom service setup wiki:
 https://wiki.st.com/stm32mcu/wiki/Connectivity:STM32WB_BLE_STM32CubeMX
 
 And the Heart Rate Sensor explanation from the wiki:
+
 https://wiki.st.com/stm32mcu/wiki/Connectivity:STM32WB_HeartRate
 
 For UUID, check the official site for more information:
+
 https://www.bluetooth.com/specifications/assigned-numbers/
 
 ## Particularities
