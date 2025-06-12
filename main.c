@@ -18,23 +18,6 @@
   ******************************************************************************
   ******************************************************************************
   *
-  * v1 Basic implementation of SSD1315 driver
-  *
-  * v2 Advanced implementation of SSD1315 driver
-  * 	Practical difference between basic and advanced is minimal
-  * 	Added BMP280 readout
-  * 	Send temperature measurement to screen
-  *
-  * v3 Added BLE
-  * 	Replaced blocking I2C functions and delay to not corrupt BLE
-  * 	BLE still refuses to play well with the I2C
-  * 	Removed I2C and generated only a simple UART pipe sent to the screen (for now)
-  * 	Code version shared on github
-  *
-  * v4 Rework
-  * 	Reworked v3 code to comply to ST WPAN standards
-  * 	Added notification to send over a counter
-  *
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
