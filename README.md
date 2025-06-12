@@ -210,9 +210,9 @@ NOTIFICATION is a recurring publication of the characteristic through BLE done b
 ## User guide
 We now have a second service running on the WB5MM. It should only be a switch which, when enabled, will start to send a counter to the phone. At the same time, the same number will be written to the WB5’s OLED screen. If the notification is disabled, the counting stops.
 
-Mind, the uart pipe is still there from the previous project and can be as well.
+Mind, the uart pipe is still there from the previous project and can be used jsut as before.
 
-I am not sharing any of the code that is the same as from the previous project (screen driving, for instance).
+I am not sharing any of the code that is the same as from the previous project (screen driving, for instance). It is necessary to change the name of the uart pipe service's name from "server1" to "uart_pipe" and the characteristic's name from "char1" to "pipe_str". This will likely wipe the event handler clear, so the uart_pipe action of writing to teh screen will need to be reintroduced to the handler.
 
 ## Conclusion
 We now have a fully functional WRITE and a NOTIFY server running on the WB5MM, exchanging basic information.
