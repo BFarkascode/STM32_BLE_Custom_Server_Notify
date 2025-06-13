@@ -161,10 +161,6 @@ And the Heart Rate Sensor explanation from the wiki:
 
 https://wiki.st.com/stm32mcu/wiki/Connectivity:STM32WB_HeartRate
 
-For UUID, check the official site for more information:
-
-https://www.bluetooth.com/specifications/assigned-numbers/
-
 ## Particularities
 ### CubeMx
 We don’t need to modify much in CubeMx compared to what we were doing for the uart pipe. The only differences are that we are not using events, we are picking “Notify” instead of “write” as a property and we are putting the value length as 4.
