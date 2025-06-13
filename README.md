@@ -8,25 +8,6 @@ We want to generate a simple counter on the WB5MM and then send it over to our p
 
 Well…no. Not at all…
 
-### A few words on Universal Unique Identifiers (UUID)
-As mentioned above, we will have multiple services.
-
-All services and characteristics have their own designated “UUID” numbers. These numbers don’t matter much in case we want to generate our own service, but they are essential in case we wish to build our application using existing services or if we want to talk to a client that expects a particular service. All UUID values are standardized and are described in a pdf available on the official Bluetooth website. These identifiers then can be used by the central device to understand, what type of service the peripheral is offering.
-
-Of note, there are a LOT of UUID numbers, and each cover a different service! Of note-of note, these are only the registered official UUIDs and running into some custom nonsense is very likely, especially when dealing with consumer electronics. Official BLE UUID values are always 16-bit wide while custom “vendor specific” ones are 128-bit wide. We will always give only 16-bit values though when defining a UUID, the rest of the 112 bits being generated automatically for us for the custom one. This ensures that the likeliness of two custom services having the same UUID is practically none.
-
-Anyway, in case we wish to communicate with an existing client or peripheral using our BLE solution, we will have to respect the UUID services the existing client will ask for or the existing peripheral, provide. As a matter of fact, communicating with an existing commercial solution will be difficult if not impossible if we don’t know, which UUID services (and UUID characteristics) we need to expect/must generate in our custom BLE solution – i.e., what data is coming our way from the peripheral or must be sent to by us.
-
-In short, UUIDs are ways to standardize the communication protocol between devices using BLE. The service UUID will tell, what the two devices can communicate between each other and the characteristic will tell, what they are communicating with the ongoing packet. From a technical point of view - as far as I can tell - the service UUID will be used to form the packet’s protocol header, while the characteristics UUID will form the packet’s data header.
-
-The service UUIDs are normally found within the advertising data of the peripheral so we can check what they are doing without fully connecting to them. If not, then after connecting, we often can see the available services, their name, UUID and characteristic in a BLE scanner application, such as the ST BLE Toolbox we are using for these projects.
-
-Here, we won’t be going any deeper into UUIDs. We will be just adding the uart_pipe service the UUID of 0x01 and the notification service (called ESS in my code) the UUID of 0x02.
-
-The takeaway is that if we want to communicate with an existing BLE solution/application, the UUID numbers for both he services and the characteristics must be respected to ensure that the right type of data is flying over the BLE bus (don’t put audio data on a handshake).
-
-One more thing: lately I have come over multiple devices there were practically invisible to the ST BLE Toolbox app. These devices could only be connected to through BLE using a third-party application. I am not sure what kind of encoding this is but it does show that not all BLE devices can be communicated to using anything.
-
 ### A few words after peaking under the hood of the BLE stack
 Something that was never actually clear to me beforehand is that the WPAN runs its own sequencer (same as a scheduler in RTOS) and it is actually the sequencer that is being timed by the mysterious “TimerServer”. To make it a more simplified, we need to set the sequencer IN PARALLEL to the BLE Stack AND all the GATT/GAP goodies. This means that we need the sequencer to run and time everything even if we aren’t directly using it as a manager of custom tasks.
 
