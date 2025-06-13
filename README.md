@@ -114,7 +114,7 @@ To sum it up (and expanding a bit on what I discussed above):
 -	we initiate the basic hardware and start WPAN
   
 “app_conf.h”
--	If we use a custom taks, the task IDs should be put here
+-	If we use a custom task, the task ID should be put here
   
 “app_entry.c”
 -	IRQ handles and callbacks go into “FD_WRAP_FUNCTIONS”
@@ -136,10 +136,6 @@ To sum it up (and expanding a bit on what I discussed above):
 -	It has the event handler for the characteristics.
 -	It will also have the char definition within the ble stack
 -	Lastly, it will have the function to update the characteristics
-
-Of note:
--	In general, local function prototypes go to “PFP” and “FD_LOCAL_FUNCTIONS” for each source code
--	In “FD”, we have functions that may be used by lower layers (shared functions), those this I am not sure of (yet)
 
 ## Previous relevant projects:
 We will be building upon the previous project in the sequence:
