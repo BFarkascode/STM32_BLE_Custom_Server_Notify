@@ -115,6 +115,7 @@ To sum it up (and expanding a bit on what I discussed above):
   
 “app_conf.h”
 -	If we use a custom task, the task ID should be put here
+-	We can also add designated priority of the custom task in the "CFG_SCH_Prio_Id_t" typedef
   
 “app_entry.c”
 -	IRQ handles and callbacks go into “FD_WRAP_FUNCTIONS”
